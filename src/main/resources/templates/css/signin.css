@@ -1,0 +1,14 @@
+#task-title {
+    text-align: center;
+}
+
+#request {
+    margin-top: 50px;
+    padding: 30px;
+    width: 600px;
+    background-color: white;
+}
+
+body {
+    background-color: rgb(245, 245, 245);
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #task-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #content {
+            background-color: white;
+            margin: 0 100px;
+            padding-top: 30px;
+            height: 100vh;
+        }
+
+        body {
+            background-color: rgb(245, 245, 245);
+        }
+    </style>
+
+    <title>Task list</title>
+</head>
+
+<body>
+<div class="conatiner">
+    <div id="content">
+        <div class="container" id="task-title">
+            <h2>Tasks list</h2>
+        </div>
+        <div class="container">
+            <div style="margin-bottom: 5px">
+                <a href="/" th:href="@{/new-task}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    Create new calculation
+                </a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Calculation Request</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+                        <a href="/" th:href="@{/detail}">Calculation 1</a>
+                    </td>
+                    <td>2022-01-29</td>
+                    <td>Status</td>
+                </tr>
+                <a href="/" th:href="@{/detail}">
+                <tr>
+                    <th scope="row">2</th>
+                    <td>
+                        <a href="/" th:href="@{/detail}">Calculation 2</a>
+                    </td>
+                    <td>2022-01-29</td>
+                    <td>Status</td>
+                </tr>
+                </a>
+
+                <tr>
+                    <th scope="row">3</th>
+                    <td>
+                        <a href="/" th:href="@{/detail}">Calculation 3</a>
+                    </td>
+                    <td>2022-01-29</td>
+                    <td>Status</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js "
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN "
+        crossorigin="anonymous "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+        crossorigin="anonymous "></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
+        crossorigin="anonymous "></script>
+</body>
+
+</html>

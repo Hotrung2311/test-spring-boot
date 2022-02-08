@@ -1,0 +1,15 @@
+#task-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#content {
+    background-color: white;
+    margin: 0 100px;
+    padding-top: 30px;
+    height: 100vh;
+}
+
+body {
+    background-color: rgb(245, 245, 245);
+}
