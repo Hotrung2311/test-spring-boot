@@ -20,18 +20,13 @@ public class UserController {
 
     @GetMapping("/login")
     public String loginForm() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication == null || authentication instanceof AnonymousAuthenticationToken){
-//            return "/html/signin";
-//        }
-//        return "redirect:/";
         return "/html/signin";
     }
 
     @GetMapping("/signup")
     public String signupForm(Model model) {
         model.addAttribute("user", new User());
-        return "/html/signup"; //
+        return "/html/signup";
     }
 
     @PostMapping("/signup")

@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/create-task.css">
     <style>
         #task-title {
             text-align: center;
@@ -34,22 +33,21 @@
         </div>
         <div>
             <div class="container">
-                <form>
+                <form th:action="@{/create-task}" enctype="multipart/form-data" th:object="${task}" method="POST">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Request title</label>
-                        <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter tilte">
+                        <label for="requestTitle">Request title</label>
+                        <input class="form-control" th:field="*{title}" id="requestTitle" aria-describedby="emailHelp" placeholder="Enter tilte">
                     </div>
-                    <div class="form-group">
-                        <label>Upload input file</label>
+                    <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            <input type="file" class="custom-file-input" id="inputFile" name="inputFile">
+                            <label class="custom-file-label" for="inputFile">Choose file</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Calculation method</label>
-                        <select class="custom-select" id="calculations" onchange="ShowHideDiv()">
+                        <select class="custom-select" id="calculations" onchange="ShowHideDiv()" name="calculationMethod">
                             <option value="0"> ---- Choose a calculation method ----</option>
                             <option value="1">Add</option>
                             <option value="2">Subtract</option>
@@ -60,17 +58,19 @@
                     </div>
 
                     <div class="form-group" id="user-method" style="display: none;">
-                        <label>Upload method</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Calculation method file</label>
+                        <label>Upload Calculation method</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="methodFile" name="methodFile">
+                                <label class="custom-file-label" for="methodFile">Choose file</label>
+                            </div>
                         </div>
                     </div>
                     <div>
                         <a href="/" th:href="@{/}">
                             <button class="btn btn-primary" type="submit">Create task</button>
                         </a>
-                        <a href="/" th:href="@{/}">
+                        <a href="/" th:href="@{/tasklist}">
                             <button class="btn btn-light" type="submit">Cancel</button>
                         </a>
                     </div>
@@ -80,16 +80,62 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
+        // const fileupload = require("./jszip");
+
         function ShowHideDiv() {
             var calculation = document.getElementById("calculations");
             var userMethod = document.getElementById("user-method");
             userMethod.style.display = calculation.value == "5" ? "block" : "none";
         }
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
+        // document.querySelector('.custom-file-input').addEventListener('change',function(e){
+        //     var fileName1 = document.getElementById("dataFile").files[0].name;
+        //     var nextSibling1 = e.target.nextElementSibling
+        //     nextSibling1.innerText = fileName1
+        // })
+        //
+        // document.querySelector('.custom-file-input').addEventListener('change',function(e){
+        //     var fileName2 = document.getElementById("methodFile").files[0].name;
+        //     var nextSibling2 = e.target.nextElementSibling
+        //     nextSibling2.innerText = fileName2
+        // })
+        //
+        // async function uploadDataFile(){
+        //     let formData = new FormData();
+        //     formData.append("file", fileupload.files[0]);
+        //     let response = await fetch('/upload-data', {
+        //         method: "POST",
+        //         body:formData
+        //     });
+        //
+        //     if (response.status == 200){
+        //         alert("Data input file uploaded.")
+        //     }
+        // }
+        //
+        // async function uploadMethodFile(){
+        //     let formData = new FormData();
+        //     formData.append("file", fileupload.files[0]);
+        //     let response = await fetch('/upload-calculation', {
+        //         method: "POST",
+        //         body:formData
+        //     });
+        //
+        //     if (response.status == 200){
+        //         alert("Calculation method file uploaded.")
+        //     }
+        // }
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
 </body>
 
 </html>
